@@ -138,4 +138,104 @@ class Query(graphene.ObjectType):
         return Review.objects.all()
 
 
-schema = graphene.Schema(query=Query)
+class CategoryInput(graphene.InputObjectType):
+    title = graphene.String()
+    description = graphene.String()
+    books_amount = graphene.String()
+
+
+class CreateCategory(graphene.Mutation):
+    class Arguments:
+        input = CategoryInput(required=True)
+
+    category = graphene.Field(CategoryType)
+
+    @classmethod
+    def mutate(cls, root, info, input):
+        category = Category()
+        category.title = input.title
+        category.description = input.description
+        category.books_amount = input.books_amount
+        category.save()
+        return CreateCategory(category=category)
+
+
+class UpdateCategory(graphene.Mutation):
+    class Arguments:
+        input = CategoryInput(required=True)
+        id = graphene.ID()
+
+    category = graphene.Field(CategoryType)
+
+    @classmethod
+    def mutate(cls, root, info, input, id):
+        category = Category.objects.get(pk=id)
+        category.title = input.title
+        category.description = input.description
+        category.books_amount = input.books_amount
+        category.save()
+        return UpdateCategory(category=category)
+
+
+class BookInput(graphene.InputObjectType):
+    title = graphene.String()
+    category = graphene.String()
+    author = graphene.String()
+    price = graphene.String()
+    amount = graphene.String()
+    page_amount = graphene.String()
+    description = graphene.String()
+    owner = graphene.String()
+
+
+class CreateBook(graphene.Mutation):
+    class Arguments:
+        input = BookInput(required=True)
+
+    book = graphene.Field(BookType)
+
+    @classmethod
+    def mutate(cls, root, info, input):
+        book = Book()
+        book.title = input.title
+        book.category = input.category
+        book.author = input.author
+        book.price = input.price
+        book.amount = input.amount
+        book.page_amount = input.page_amount
+        book.description = input.description
+        book.order = input.order
+        book.save()
+        return CreateBook(book=book)
+
+
+class UpdateBook(graphene.Mutation):
+    class Arguments:
+        input = BookInput(required=True)
+        id = graphene.ID()
+
+    book = graphene.Field(BookType)
+
+    @classmethod
+    def mutate(cls, root, info, input, id):
+        book = Book.objects.get(pk=id)
+        book.title = input.title
+        book.category = input.category
+        book.author = input.author
+        book.price = input.price
+        book.amount = input.amount
+        book.page_amount = input.page_amount
+        book.description = input.description
+        book.order = input.order
+        book.save()
+        return UpdateBook(book=book)
+
+
+class Mutation(graphene.ObjectType):
+    update_category = UpdateCategory.Field()
+    create_category = CreateCategory.Field()
+    create_book = CreateBook.Field()
+    update_book = UpdateBook.Field()
+
+
+schema = graphene.Schema(query=Query, mutation=Mutation)
