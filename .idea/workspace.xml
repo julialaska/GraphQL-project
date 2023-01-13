@@ -4,7 +4,7 @@
     <list default="true" id="82c8a203-ee44-4fa1-b85c-f6eae44697a6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graphql_app/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/graphql_app/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql_app/products/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphql_app/products/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphql_app/products/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphql_app/products/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graphql_app/products/schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphql_app/products/schema.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
